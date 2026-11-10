@@ -1,0 +1,8 @@
+# Datos: se regeneran con los notebooks (cruda: 01, limpia: 01-02, analítica: 03)
+data/
+# La base DuckDB se regenera con 03_dw_estrella (las tablas están en data/dw/*.parquet)
+*.duckdb
+*.duckdb.wal
+.ipynb_checkpoints/
+__pycache__/
+.DS_Store
