@@ -20,7 +20,7 @@ Todos revisan el trabajo de todos: el Comité puede preguntar a cualquiera.
    1. `00_exploracion.ipynb` · exploración guiada ene–jun 2020 (no requiere Drive).
    2. `01_ingesta.ipynb` · descarga los 1.143 reportes, series y tabla UID; unifica los 5 esquemas; escribe la capa limpia en Parquet. Pide autorizar Google Drive (los datos quedan en `MyDrive/proyecto-gestion-datos-2026/data`). ~3–5 min.
    3. `02_calidad.ipynb` · homologación de países y reglas de calidad de las 6 dimensiones.
-   4. `03_dw_estrella.ipynb` · modelo en estrella en DuckDB y primeras consultas OLAP.
+   4. `03_dw_estrella.ipynb` · modelo en estrella en SQLite (como en el taller de la S10), conciliación y consultas OLAP.
 3. Los datos **no** están en el repositorio (la capa limpia pesa ~110 MB): siempre se regeneran ejecutando los notebooks en orden.
 
 ### En un computador (sin Colab)
@@ -35,7 +35,7 @@ notebooks/      00_exploracion · 01_ingesta · 02_calidad · 03_dw_estrella (en
 data/           NO se versiona (se regenera con los notebooks; en Colab queda en Google Drive)
   raw/          capa cruda: CSV originales (01_ingesta)
   clean/        capa limpia: Parquet unificados, series, tabla UID, homologación, calidad (01 y 02)
-  dw/           capa analítica: DuckDB + tablas del modelo en estrella en Parquet (03)
+  dw/           capa analítica: base SQLite `covid_dw.db` con el modelo en estrella (03)
 docs/           diccionario de datos, decisiones, propuesta P7, informes (pendientes)
 reports/        perfil automático (ydata-profiling)
 contribuciones.md
