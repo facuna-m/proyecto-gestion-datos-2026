@@ -3,6 +3,9 @@ data/raw/
 datos_crudos/
 # El DW se versiona comprimido (data/dw/covid_dw.db.gz); la base sin comprimir supera los 100 MB de GitHub
 data/dw/*.db
+# Archivos temporales y notebooks ejecutados por reproducir.py
+trabajo/
+salidas/
 *.duckdb
 *.duckdb.wal
 .ipynb_checkpoints/

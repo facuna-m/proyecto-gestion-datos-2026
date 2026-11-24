@@ -26,6 +26,17 @@ Todos revisan el trabajo de todos: el Comité puede preguntar a cualquiera.
 * **P6:** la alerta se encendió 5 días antes de la ola de ómicron, pero los pronósticos con corte el 27-dic-2021 no la vieron venir.
 * **P7:** los países más envejecidos tuvieron más mortalidad (Spearman 0,79 en 150 países; ~14 fallecidos más por 100.000 por cada punto % de población de 65+).
 
+## Cómo reproducir todo con un comando (computador)
+
+```bash
+git clone https://github.com/facuna-m/proyecto-gestion-datos-2026.git
+cd proyecto-gestion-datos-2026
+pip install -r requirements.txt
+python reproducir.py
+```
+
+`reproducir.py` ejecuta los notebooks 00 a 07 en orden: descarga los datos crudos en `data/raw/`, regenera la capa limpia (`data/clean/`) y el DW (`data/dw/`), deja los notebooks ejecutados en `salidas/` y actualiza las copias que usa el tablero. No modifica los notebooks: solo cambia, en memoria, las rutas de Colab por las de esta carpeta. Tarda entre 10 y 30 minutos según la conexión (la primera vez descarga unos 600 MB). Después: `streamlit run dashboard/app.py`.
+
 ## Cómo reproducir todo desde cero (Google Colab)
 
 1. Abrir Colab con la cuenta que usará Google Drive y cargar los notebooks: *Archivo → Abrir cuaderno → GitHub*, pegar la URL de este repositorio y elegir el notebook.
@@ -39,8 +50,6 @@ Todos revisan el trabajo de todos: el Comité puede preguntar a cualquiera.
    7. `06_segmentacion` · k-means sobre la forma de las curvas (P5).
    8. `07_proteccion_datos` · R6: Ley 19.628 y 21.719, celdas pequeñas y regla de supresión.
 3. **Tablero:** abrir https://sala-crisis-covid-ucsc.streamlit.app, o ejecutarlo localmente con `pip install -r dashboard/requirements.txt` y `streamlit run dashboard/app.py`. Si se regeneran los datos, copiar a `dashboard/` los archivos `serie_territorio`, `calidad_por_pais`, `vacunacion` y `segmentacion_paises` de `data/clean/`.
-
-**Sin Colab (en un computador):** `pip install -r requirements.txt`; en la celda *Setup* de cada notebook, borrar las dos líneas de `drive.mount` y cambiar `PROYECTO` por la ruta de esta carpeta (los datos se escriben en `data/`).
 
 **Usar los datos ya procesados:** la capa limpia está en `data/clean/` y el DW en `data/dw/covid_dw.db.gz` (descomprimir con `gunzip covid_dw.db.gz`).
 
@@ -75,6 +84,8 @@ docs/
   decisiones.md           registro de decisiones con su motivo
   propuesta_P7.md         propuesta de la pregunta propia (Hito 1)
 reports/                  perfil automático de ene–jun 2020 (ydata-profiling)
+reproducir.py             regenera todo con un comando fuera de Colab
+requirements.txt          librerías de Python del proyecto
 contribuciones.md         quién hizo qué y uso de IA generativa
 ```
 
