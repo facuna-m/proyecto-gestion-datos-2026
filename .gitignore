@@ -1,6 +1,8 @@
-# Datos: se regeneran con los notebooks (cruda: 01, limpia: 01-02, analítica: 03)
-data/
-# La base DuckDB se regenera con 03_dw_estrella (las tablas están en data/dw/*.parquet)
+# Capa cruda: se descarga con 01_ingesta y 05_fuentes_externas (no se versiona)
+data/raw/
+datos_crudos/
+# El DW se versiona comprimido (data/dw/covid_dw.db.gz); la base sin comprimir supera los 100 MB de GitHub
+data/dw/*.db
 *.duckdb
 *.duckdb.wal
 .ipynb_checkpoints/
