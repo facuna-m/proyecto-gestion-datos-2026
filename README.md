@@ -45,7 +45,7 @@ python reproducir.py
    2. `01_ingesta` · descarga los 1.143 reportes, las series y la tabla UID (capa cruda), unifica los 5 esquemas y guarda la capa limpia en Parquet. Compara CSV y Parquet. ~5 a 8 minutos.
    3. `02_calidad` · homologación de países, 13 reglas de calidad de las 6 dimensiones, cuantificación de problemas e índice de calidad por país.
    4. `03_dw_estrella` · modelo en estrella en SQLite, conciliación y consultas OLAP.
-   5. `04_analisis_prediccion` · serie territorio × día, `alerta()`, `pronosticar()` y respuestas P1, P2, P4 y P6. Guarda la serie que usa el tablero.
+   5. `04_analisis_prediccion` · serie territorio × día, `alerta()`, `pronosticar()` y respuestas P1, P2, P4 y P6. Guarda la serie que usa el tablero. La sección 6 es la prueba en vivo con verificación de fuga de datos.
    6. `05_fuentes_externas` · descarga Banco Mundial y OWID, cruce por ISO3, carga en el DW y respuestas P3 y P7.
    7. `06_segmentacion` · k-means sobre la forma de las curvas (P5).
    8. `07_proteccion_datos` · R6: Ley 19.628 y 21.719, celdas pequeñas y regla de supresión.
@@ -56,7 +56,7 @@ python reproducir.py
 ## Desafío en vivo
 
 En el tablero: elegir el territorio y la fecha de corte. Muestra los KPI a esa fecha, si la alerta estaba activa y el pronóstico de los tres modelos frente a lo que realmente pasó (con MAE y MAPE).
-En el notebook 04: `alerta('Chile', '2022-01-05')` y `comparar('Chile', '2021-12-27')` (o `pronosticar(territorio, fecha_corte, 14)`). Ninguna usa datos posteriores a la fecha de corte.
+En el notebook 04, sección 6 «Prueba en vivo»: se elige `TERRITORIO` y `FECHA_CORTE` (por defecto Biobío al 5-nov-2021, una semana antes de una ola) y se ejecutan `alerta()` y `pronosticar(territorio, fecha_corte, 14)`. La celda siguiente repite los cálculos sin ningún dato posterior al corte y comprueba que el resultado es idéntico (no hay fuga de datos); la última compara el pronóstico con lo que realmente ocurrió (MAE, MAPE y gráfico).
 
 ## Estructura
 
